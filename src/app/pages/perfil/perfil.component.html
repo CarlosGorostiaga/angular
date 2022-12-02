@@ -1,0 +1,74 @@
+<link rel="stylesheet" href="perfil.component.css">
+
+<div class="flex-container">
+    <div class="padre-info">
+        <div class="caja-foto">
+            <div class="foto"><img class="img"
+                    src="{{newUser.url}}"
+                    alt="Imagen de perfil" ></div>
+            <div class="title-name">
+                <div class="iconPerfil"><img class="img" src="../../../assets/img/usuario.png" alt="icono perfil"></div>
+                <div class="name">
+                    <div class="input-group">
+                        <label class="label">Nombre Completo</label>
+                        <input autocomplete="off" name="nameFull" id="nameFull" class="input" type="text"
+                            readonly="readonly" placeholder=" " [value]="newUser.nombreCompleto()">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+            <div class="campos">
+                <div class="input-group">
+                    <label class="label">Nombre</label>
+                    <input autocomplete="off" name="name" id="name" class="input" type="text" readonly="readonly" placeholder="" [value]="newUser.nombre">
+                    <div></div>
+                </div>
+                <div class="input-group">
+                    <label class="label">Apellido</label>
+                    <input autocomplete="off" name="last_name" id="last_name" class="input" type="text"
+                        readonly="readonly" placeholder="" [value]="newUser.apellidos">
+                    <div></div>
+                </div>
+                <div class="input-group">
+                    <label class="label">Direccion E-mail</label>
+                    <input autocomplete="off" name="Email" id="email" class="input" type="email" readonly="readonly" placeholder=""[value]="newUser.correo">
+                    <div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="padre-info1">
+        <div class="caja-foto1">
+            <div class="datos"><h2>Modificar Datos</h2></div>
+            <div class="campos2">
+                <div class="input-group">
+                    <label class="label"></label>
+                    <input autocomplete="off" name="name" id="name" class="input" type="text" placeholder="Nombre" #input1>
+                    <div></div>
+                </div>
+                <div class="input-group">
+                    <label class="label"></label>
+                    <input autocomplete="off" name="last_name" id="last_name" class="input" type="text" placeholder="Apellido" #input2>
+                    <div></div>
+                </div>
+                <div class="input-group">
+                    <label class="label"></label>
+                    <input autocomplete="off" name="Email" id="email" class="input" type="email" placeholder="E-mail" #input3>
+                    <div></div>
+                </div>
+                <div class="input-group">
+                    <label class="label"></label>
+                    <input autocomplete="off" name="name" id="name" class="input" type="text"  placeholder="URL" #input4 >
+                    <div></div>
+                </div>
+                <button on-click=enviar2(input1.value,input2.value,input3.value,input4.value)>
+                    <span class="button_top">MODIFICAR</span>
+                </button>
+
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
