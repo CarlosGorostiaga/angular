@@ -1,4 +1,6 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { Libro } from '../models/libro';
 
 @Injectable({
@@ -7,8 +9,9 @@ import { Libro } from '../models/libro';
 export class ServicioService {
 
   private libros: Libro[]
+  private url: "http://localhost:3000/"
 
-  constructor() {
+  constructor(private http: HttpClient) {
 
     this.libros =
       [
@@ -22,74 +25,96 @@ export class ServicioService {
   }
 
   // **********Getter y Setterr***********
-  public setLibros(libros: Libro[]) {
-    this.libros = libros;
-    return libros;
-  }
+  // public setLibros(libros: Libro[]) {
+  //   this.libros = libros;
+  //   return libros;
+  // }
 
-  public getLibros(): Libro[] {
-    return this.libros
-  }
+  // public getLibros(): Libro[] {
+  //   return this.libros
+  // }
 
   // ******************Acaban los Getter y Setter************
 
   //**************EMPIEZAN LOS METODOS *************/
 
-  public getAll(): Libro[] {
+  //   public getAll(): Libro[] {
 
-    return this.libros
+  //     return this.libros
 
+  //   }
+
+  //   public getOne(id_libro: number): Libro {
+
+  //     let searchLibro: Libro;
+  //     for (let i = 0; i < this.libros.length; i++) {
+  //       if (id_libro == this.libros[i].id_libro) {
+  //         searchLibro = this.libros[i]
+  //       }
+  //     }
+  //     return searchLibro
+  //   }
+
+
+  //   public add(libro: Libro): void {
+
+
+  //     this.libros.push(libro)
+  //     console.log(this.libros);
+
+
+  //   }
+
+  //   public edit(libro: Libro): boolean {
+  //     let libroEncontrado = this.libros.find(item => item.id_libro == libro.id_libro)
+  //     let numeroBook = libroEncontrado != undefined;
+
+  //     if (numeroBook == true) {
+  //       libroEncontrado.titulo = libro.titulo,
+  //         libroEncontrado.tipoLibro = libro.tipoLibro,
+  //         libroEncontrado.autor = libro.autor,
+  //         libroEncontrado.precio = libro.precio,
+  //         libroEncontrado.photo = libro.photo,
+  //         libroEncontrado.id_usuario = libro.id_usuario
+
+  //     } else {
+  //     }
+  //     return numeroBook
+  //   }
+
+
+  //   public delete(id_libro: number): boolean {
+  //     let buscaID: number = this.libros.findIndex(element => element.id_libro == id_libro);
+  //     let borrarOK: boolean = buscaID != -1;
+  //     if (borrarOK) {
+  //       this.libros.splice(buscaID, 1);
+  //     } else {
+  //       let message = "No existe ese libro"
+  //       console.log(message);
+  //     }
+  //     return borrarOK
+  //   }
+  // }
+
+  public getAll(id_usuario: Number): Observable<Object> {
+    return this.http.get(this.url + "libro?id_usuario=" + id_usuario)
   }
 
-  public getOne(id_libro: number): Libro {
-
-    let searchLibro: Libro;
-    for (let i = 0; i < this.libros.length; i++) {
-      if (id_libro == this.libros[i].id_libro) {
-        searchLibro = this.libros[i]
-      }
-    }
-    return searchLibro
+  public getOne(id_usuario: Number, id_libro: Number): Observable<Object> {
+    return this.http.get(this.url + "libro?id_usuario=" + id_usuario + "&id_libro=" + id_libro)
   }
 
 
-  public add(libro: Libro): void {
-
-
-    this.libros.push(libro)
-    console.log(this.libros);
-
-
+  public add(libro: Libro): Observable<Object> {
+    return this.http.post(this.url + "libro?id_usuario=" + libro.id_usuario, libro)
   }
 
-  public edit(libro: Libro): boolean {
-    let libroEncontrado = this.libros.find(item => item.id_libro == libro.id_libro)
-    let numeroBook = libroEncontrado != undefined;
-
-    if (numeroBook == true) {
-      libroEncontrado.titulo = libro.titulo,
-        libroEncontrado.tipoLibro = libro.tipoLibro,
-        libroEncontrado.autor = libro.autor,
-        libroEncontrado.precio = libro.precio,
-        libroEncontrado.photo = libro.photo,
-        libroEncontrado.id_usuario = libro.id_usuario
-
-    } else {
-    }
-    return numeroBook
+  public edit(libro: Libro): Observable<Object> {
+    return this.http.put(this.url + "libro?id_usuario=" + libro.id_usuario + "&id_libro=" + libro.id_libro, libro)
   }
 
 
-  public delete(id_libro: number): boolean {
-    let buscaID: number = this.libros.findIndex(element => element.id_libro == id_libro);
-    let borrarOK: boolean = buscaID != -1;
-    if (borrarOK) {
-      this.libros.splice(buscaID, 1);
-    } else {
-      let message = "No existe ese libro"
-      console.log(message);
-    }
-    return borrarOK
+  public delete(id_libro: Number): Observable<Object> {
+    return this.http.delete(this.url + "libro", { body: { id_libro } })
   }
 }
-

@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Libro } from 'src/app/models/libro';
+import { Usuario } from 'src/app/models/usuario';
 import { ServicioService } from 'src/app/shared/servicio.service';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-libros',
@@ -8,30 +10,24 @@ import { ServicioService } from 'src/app/shared/servicio.service';
   styleUrls: ['./libros.component.css']
 })
 export class LibrosComponent {
-  public newBook: Libro[]
+  public newBook: Libro[] 
 
-
-  constructor(public servicioService: ServicioService) {
-    this.newBook = this.servicioService.getAll()
+  constructor(public libroService: ServicioService, private usuarioService: UsuarioService) {
+    this.libroService.getAll(this.usuarioService.usuario.id_usuario).subscribe((result: any) => { this.newBook = result })
   }
 
-  public searchLibro(campoID_Book:string){
-    if(campoID_Book == ""){
-      this.newBook = this.servicioService.getAll()
-    }else{
-      this.newBook = [this.servicioService.getOne(parseInt(campoID_Book))]
+  public searchLibro(id_libro: string = "") {
+    if (id_libro == "") {
+      this.libroService.getAll(this.usuarioService.usuario.id_usuario).subscribe((result: any) => { this.newBook = result })
+    } else {
+      this.libroService.getOne(this.usuarioService.usuario.id_usuario, Number(id_libro)).subscribe((result: any) => this.newBook = result)
     }
   }
-
-  public deleteLibro(campoID_Book:number){
-    let bookExists = this.servicioService.delete(campoID_Book)
-    if(!bookExists){
-      console.log("Eso no existe");
-      
-    }
+  public deleteLibro(id_libro: number) {
+    this.libroService.delete(id_libro).subscribe(() => {
+    this.newBook = this.newBook.filter(libro => libro.id_libro != id_libro)
+    })
   }
-
-  ngOnInit():void{}
 }
 
 

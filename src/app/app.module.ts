@@ -13,6 +13,9 @@ import { LibrosComponent } from './pages/libros/libros.component';
 import { CodePipe } from './pipes/code.pipe';
 import { AddlibroComponent } from './pages/addlibro/addlibro.component';
 import { UpdatelibroComponent } from './pages/updatelibro/updatelibro.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormularioLoginComponent } from './component/formulario-login/formulario-login.component';
+import { LoginComponent } from './pages/login/login.component';
 
 
 
@@ -29,11 +32,16 @@ import { UpdatelibroComponent } from './pages/updatelibro/updatelibro.component'
     CodePipe,
     AddlibroComponent,
     UpdatelibroComponent,
+    FormularioLoginComponent,
+    LoginComponent
+
+
 
 
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule
   ],
   providers: [],

@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="formulario-login.component.css">
+
+<div class="flex-container">
+    <div class="title">
+        <h1>INICIO DE SESION</h1>
+    </div>
+    <div class="tarjeta">
+
+        <div class="input-group">
+            <label class="label">Direccion E-mail</label>
+            <input autocomplete="off" name="Email" id="email" class="input" type="email" #input1>
+            <div></div>
+        </div>
+        <div class="input-group">
+            <label class="label">Contraseña</label>
+            <input autocomplete="off" name="password" id="password" class="input" type="password" #input2>
+            <div></div>
+        </div>
+
+
+        <div class="padre-boton">
+            <button (click)="goSesion(input1.value,input2.value)">
+                <span class="button_top">INICIAR SESION</span>
+            </button>
+        </div>
+
+    </div>
+</div>

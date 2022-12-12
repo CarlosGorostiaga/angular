@@ -4,22 +4,25 @@
 
     <div class="padre-botones">
         <button>
-            <span routerLink="home" class="button_top">HOME</span>
+            <span routerLink="home" class="button_top" *ngIf="usuarioService.logueado == false">HOME</span>
         </button>
         <button>
-            <span routerLink="registro" class="button_top">REGISTRO</span>
+            <span routerLink="registro" class="button_top" *ngIf="usuarioService.logueado == false">REGISTRO</span>
         </button>
         <button>
-            <span routerLink="perfil" class="button_top">PERFIL</span>
+            <span routerLink="perfil" class="button_top" *ngIf="usuarioService.logueado == true">PERFIL</span>
         </button>
         <button>
-            <span routerLink="libros" class="button_top">LIBROS</span>
+            <span routerLink="libros" class="button_top" *ngIf="usuarioService.logueado == true">LIBROS</span>
         </button>
         <button>
-            <span routerLink="addlibro" class="button_top">AÑADIR LIBRO</span>
+            <span routerLink="addlibro" class="button_top" *ngIf="usuarioService.logueado == true">AÑADIR LIBRO</span>
         </button>
         <button>
-            <span routerLink="updatelibro" class="button_top">MODIFICAR LIBRO</span>
+            <span routerLink="updatelibro" class="button_top" *ngIf="usuarioService.logueado == true">MODIFICAR LIBRO</span>
+        </button>
+        <button>
+            <span routerLink="login" class="button_top" *ngIf="usuarioService.logueado == false">LOGIN</span>
         </button>
 
     </div>

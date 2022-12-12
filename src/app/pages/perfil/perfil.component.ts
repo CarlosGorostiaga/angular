@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from 'src/app/models/usuario';
+import { UsuarioService } from 'src/app/shared/usuario.service';
 
 @Component({
   selector: 'app-perfil',
@@ -9,8 +10,8 @@ import { Usuario } from 'src/app/models/usuario';
 export class PerfilComponent {
   public newUser: Usuario
 
-  constructor() {
-    this.newUser = new Usuario(1, "Carlos", "Gorostiaga", "Carlos@gmail.com ", "../../../assets/img/personaje.png", "toki2796")
+  constructor( public usuarioService : UsuarioService) {
+    this.newUser = usuarioService.usuario
   }
 
 
@@ -19,17 +20,17 @@ export class PerfilComponent {
     console.log(this.newUser.nombre);
     console.log(this.newUser.apellidos);
     console.log(this.newUser.correo);
-    console.log(this.newUser.url);
+    console.log(this.newUser.foto);
     
     this.newUser.nombre = nuevoNombre;
     this.newUser.apellidos = nuevoApellido;
     this.newUser.correo = nuevoCorreo;
-    this.newUser.url=nuevoFoto
+    this.newUser.foto=nuevoFoto
     
     console.log(this.newUser.nombre);
     console.log(this.newUser.apellidos);
     console.log(this.newUser.correo);
-    console.log(this.newUser.url);
+    console.log(this.newUser.foto);
     
   }
 }

@@ -4,7 +4,7 @@ export class Usuario {
     public nombre: string
     public apellidos: string
     public correo: string
-    public url: string
+    public foto: string
     public password: string
 
     constructor(id_usuario: number, nombre: string, apellidos: string, correo: string, url: string, password: string) {
@@ -12,7 +12,7 @@ export class Usuario {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.correo = correo;
-        this.url = url;
+        this.foto= url;
         this.password = password
 
     }
